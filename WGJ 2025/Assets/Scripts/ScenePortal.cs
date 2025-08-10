@@ -16,7 +16,7 @@ public class ScenePortal : MonoBehaviour
         if (ScreenFader.Instance != null)
             ScreenFader.Instance.TransitionToScene(sceneName, fadeDuration);
         else
-            SceneManager.LoadScene(sceneName); // fallback without fade
+            SceneManager.LoadScene(sceneName); 
     }
 
     private System.Collections.IEnumerator LoadSceneWithFade()

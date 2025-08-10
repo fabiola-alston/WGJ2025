@@ -18,27 +18,26 @@ public class BillboardToPlayer : MonoBehaviour
 
     void LateUpdate()
     {
-        // Find target if not assigned
+        
         if (player == null)
         {
             var p = GameObject.FindGameObjectWithTag("Player");
             if (p) player = p.transform;
-            else if (Camera.main) player = Camera.main.transform; // fallback: face camera
+            else if (Camera.main) player = Camera.main.transform; 
             else return;
         }
 
-        // Direction from this sprite to the player
+        
         Vector3 dir = player.position - transform.position;
 
         if (onlyRotateAroundY)
         {
-            dir.y = 0f; // stay upright
+            dir.y = 0f; 
             if (dir.sqrMagnitude < 1e-6f) return;
         }
 
         if (invertForward) dir = -dir;
 
-        // Face the target
         transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
         if (additionalEulerOffset != Vector3.zero)
             transform.rotation *= Quaternion.Euler(additionalEulerOffset);
